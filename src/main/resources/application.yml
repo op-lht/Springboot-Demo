@@ -1,0 +1,53 @@
+#server config
+server:
+  port: 8875
+  servlet:
+    context-path: /lht
+    
+#db config    
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://47.101.42.207:3306/lht_mp?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true
+    # 可省略，SpringBoot会自动推断
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #指定数据源的类型
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    ####后面的设置不能自动绑定到数据源配置类（DataSourceProperties）中  需要自己用java配一下
+#    initialSize: 5
+#    minIdle: 5
+#    maxActive: 20
+#    maxWait: 60000
+#    timeBetweenEvictionRunsMillis: 60000
+#    minEvictableIdleTimeMillis: 300000
+#    validationQuery: SELECT 1 FROM DUAL
+#    testWhileIdle: true
+#    ##获取连接时测试是否可用
+#    testOnBorrow: false
+#    testOnReturn: false
+#    poolPreparedStatements: true
+#    #配置监控统计拦截的filters，去掉后监控界面sql无法统计，‘wall’用于防火墙,此处是filter修改的地方 老版本：filters: stat,wall,log4j
+#    filters: 
+#        commons-log.connection-logger-name: stat,wall,log4j
+#    maxPoolPreparedStatementPerConnectionSize: 20
+#    useGlobalDataSourceStat: true
+#    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+    
+# log config
+#设置com.lht包的日志级别为debug(log日志级别默认是显示info以上) SpringBoot通过logging.level.*=debug来配置日志级别，*填写包名
+
+logging:
+  level:
+     com.lht: debug
+
+# mybatis config
+mybatis:
+  # 别名扫描
+  type-aliases-package:  com.lht.bussiness.user.entity
+  #mapper.xml文件位置
+  mapper-locations: classpath:mappers/*.xml
+  configuration:
+    #开启驼峰命名法
+    map-underscore-to-camel-case: true
+      

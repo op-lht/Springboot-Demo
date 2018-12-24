@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lht.bussiness.user.dao.UserDao">
+    <select id="queryAll" resultType="User">
+        select * from tb_user order by user_id desc
+    </select>
+
+    <select id="find" resultType="User">
+        select * from tb_user where user_id = #{userId}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="userId" keyColumn="user_id" parameterType="User">
+        insert into tb_user(username,mobile,password,create_time) values(#{userName},#{mobile},#{password},now())
+    </insert>
+
+	<update id="update" parameterType="User">
+		update tb_user
+       <set>
+           <if test="username != null">username=#{userName},</if>
+           <if test="mobile != null">mobile=#{mobile},</if>
+           <if test="password != null">mobile=#{password},</if>
+       </set>
+        where user_id=#{userId}
+    </update>
+
+    <delete id="delete">
+        delete from tb_user where user_id=#{userId}
+    </delete>
+</mapper>

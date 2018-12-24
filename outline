@@ -1,0 +1,29 @@
+1.连接数据库：
+ 1）、引入jar包
+ 2）、编写配置文件
+	#db config    
+	spring:
+	  datasource:
+	    username: root
+	    password: 123456
+	    url: jdbc:mysql://47.101.42.207:3306/lht_mp?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true
+	    # 可省略，SpringBoot自动推断
+	    driver-class-name: com.mysql.jdbc.Driver
+2.使用Duirid数据源
+3.注册拦截器（如登录拦截）    
+4.日志配置   
+	# 设置com.lht包的日志级别为debug(log日志级别默认是显示info以上) SpringBoot通过logging.level.*=debug来配置日志级别，*填写包名
+	logging.level.com.leyou=debug 
+5.整合jdbc和事务(@Transactional)
+6.整合mybatis(半自动化ORM框架)
+	1）mybatis框架使用过程
+	2）Lombok插件安装和使用   
+	@Data
+	@Accessors 开启链式编程模式
+	
+	开启驼峰命名法
+	mybatis:
+		configuration:
+	   		#开启驼峰命名法
+	    	map-underscore-to-camel-case: true
+7.代码生成器(mybatis-plus)
